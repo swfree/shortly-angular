@@ -1,25 +1,24 @@
 <div id='container'>
   <!-- Your html here -->
-    <div class='navigation'>
-    <ul>
-      <li><a href='#/links' class='index'>All Links</a></li>
-      <li><a href='#/shorten' class='create'>Shorten</a></li>
-    </ul>
-      <a href='/logout' class='logout'>Logout</a>
-    </div>
-    <div id='container'></div>
+  <div class='navigation'>
+  <ul>
+    <li><a href='#/links' class='index'>All Links</a></li>
+    <li><a href='#/shorten' class='create'>Shorten</a></li>
+    <li><a href='#/logout' class='logout'>Logout</a></li>
+  </ul>
+  </div>
+  <div id='container'></div>
 
+  <input ng-model='userSearch' class='text' type='text' name='search'>
 
-  <div ng-repeat="link in data.links">
+  <div ng-repeat="link in data.links | filter:userSearch">
     <img src='../assets/redirect_icon.png'/>
     <div class='info'>
-      <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
-      <div class='title'>{{link.title}}</div>
-      <div class='original'>{{link.url}}</div>
-      <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+      <div class='visits'><span class='count'>{{ link.visits }}</span>Visits</div>
+      <div class='title'>{{ link.title }}</div>
+      <div class='original'>{{ link.url }}</div>
+      <a href='{{ link.baseUrl }}/{{ link.code }}'>{{ link.baseUrl }}/{{ link.code }}</a>
     </div>
   </div>
 
-
- 
 </div>

@@ -3,14 +3,17 @@ var userController = require('../users/userController.js');
 var helpers = require('./helpers.js'); // our custom middleware
 
 module.exports = function (app, express) {
-  app.get('/:code', linksController.navToLink);
+  app.use('/api/links', helpers.decode);
+  app.use('/#/links', helpers.decode);
+  app.use('/#/shorten', helpers.decode);
+
+  app.get('/:code', linksController.navToLink, userController.signin);
 
   app.post('/api/users/signin', userController.signin);
   app.post('/api/users/signup', userController.signup);
   app.get('/api/users/signedin', userController.checkAuth);
 
   // authentication middleware used to decode token and made available on the request
-  // app.use('/api/links', helpers.decode);
   app.get('/api/links/', linksController.allLinks);
   app.post('/api/links/', linksController.newLink);
 

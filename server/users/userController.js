@@ -23,6 +23,8 @@ module.exports = {
                 var token = jwt.encode(user, 'secret');
                 res.json({token: token});
               } else {
+                //TODO: tell user when password is incorrect
+                  // somehow update $scope in signin view
                 return next(new Error('No user'));
               }
             });
