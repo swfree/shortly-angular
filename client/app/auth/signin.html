@@ -1,8 +1,37 @@
 <div id='signin'>
   <h1>signin</h1>
   <form name="signinForm" ng-submit='signin()'>
-    <input type='text'ng-model='user.username'>
-    <input type="password" ng-model='user.password'>
+    <input 
+      name='username'
+      type='text'
+      required
+      ng-model='user.username'
+      ng-pattern='/^\s*\w*\s*$/'
+    >
+    <div role="alert">
+      <span ng-show="signinForm.username.$error.pattern">Username should not have spaces!
+      </span>
+      <span ng-show="signinForm.username.$error.required">Username required!</span>
+    </div>
+    <input 
+      name='password'
+      type='password' 
+      required
+      ng-model='user.password'
+      ng-pattern='/[0-9]/'
+      ng-minlength='8'
+      ng-maxlength='16'
+    >
+    <div role="alert">
+      <span ng-show="signinForm.password.$error.pattern">Must contain a number!
+      </span>
+      <span ng-show="signinForm.password.$error.minlength">Password must be at least 8 characters long!
+      </span>
+      <span ng-show="signinForm.password.$error.maxlength">Password must be at most 16 characters long!
+      </span>
+      <span ng-show="signinForm.password.$error.required">Password required!</span>
+    </div>
+    <br>
     <button>signin</button>
   </form>
   <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>

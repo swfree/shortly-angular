@@ -7,19 +7,29 @@
     <li><a href='#/logout' class='logout'>Logout</a></li>
   </ul>
   </div>
-  <div id='container'></div>
 
-   <form ng-submit="addLink()">
-    <input type="url" ng-model="string" ng-model='link.url' class='text' type='text' name='url'>
+   <form ng-submit="addLink()" name="shortenForm">
+    <input type='url' name='input' ng-model='link.url' class='text'>
     <input type='submit' value='Shorten'>
+    <br>
     <div role="alert">
-        <span class="error" ng-show="myForm.input.$error.url">
-          Not valid url!
-        </span>
+      <span class="error" ng-show="shortenForm.input.$error.url">
+        Not valid url!
+      </span>
     </div>
   </form>
-  <img class='spinner' src='/spiffygif_46x46.gif'>
-  <div class='message'></div>
+  <!-- Show spin while post request is going: -->
+  <!-- <img class='spinner' src='../assets/spiffygif_46x46.gif'> -->
+
+  <div class="link" ng-show="data.link">
+    <img src='../assets/redirect_icon.png'/>
+    <div class='info'>
+      <div class='visits'><span class='count'>{{ data.link.visits }}</span>Visits</div>
+      <div class='title'>{{ data.link.title }}</div>
+      <div class='original'>{{ data.link.url }}</div>
+      <a href='{{ data.link.baseUrl }}/{{ data.link.code }}'>{{ data.link.baseUrl }}/{{ data.link.code }}</a>
+    </div>
+  </div>
 
 </div>
 

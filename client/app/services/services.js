@@ -13,7 +13,6 @@ angular.module('shortly.services', [])
   };
 
   var addOne = function (newLink) {
-    console.log('------Links factory new link: ', newLink);
     return $http({
       method: 'POST',
       url: '/api/links',
